@@ -47,9 +47,9 @@ Empregarase unha metodoloxía áxil baseada en iteracións curtas semanais. O en
 - **Duración:** 3 días
 
 - **Recursos necesarios:**
-  - Ferramentas de deseño (Figma, papel/lapis, etc).
+  - Ferramentas de deseño (Figma).
   - Editor de texto/código (PhpStorm).
-  - Documentación técnica de Laravel e Livewire.
+  - Documentación técnica de Php, Laravel e Livewire.
 
 ---
 
