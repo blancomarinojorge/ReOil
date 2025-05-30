@@ -14,7 +14,7 @@
                 <form method="POST" action="{{ route('login.store') }}" class="mt-10 flex flex-col gap-5">
                     <x-forms.input name="email" label="email" required="true"/>
                     <x-forms.input name="password" label="password" required="true"/>
-                    <x-forms.button class="px-10">Login</x-forms.button>
+                    <x-forms.button class="py-4">Login</x-forms.button>
                 </form>
             </div>
         </section>

@@ -134,6 +134,8 @@
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/application/storage/app" />
       <excludeFolder url="file://$MODULE_DIR$/application/storage/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/gehrisandro/tailwind-merge-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/gehrisandro/tailwind-merge-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
