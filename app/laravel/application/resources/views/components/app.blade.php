@@ -16,5 +16,8 @@
 </head>
 <body class="bg-secondary m-0 text-tertiary font-primary">
     {{ $slot }}
+
+    <!-- Display global flash messages in popups if set in the session -->
+    <x-global.pop-up-notification/>
 </body>
 </html>

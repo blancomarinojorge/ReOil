@@ -39,6 +39,7 @@ class RegistrationController extends Controller
 
         /** @var User $user */
         $user = null;
+        // we create the company and then the admin user for it, rollback if error
         try{
             DB::transaction(function () use (&$user,$userAttributes, $companyName, $userName) {
                 $company = Company::create([
@@ -54,7 +55,9 @@ class RegistrationController extends Controller
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
-            dd($e->getMessage());
+            return redirect()->back()
+                ->withInput()
+                ->with('error', __('messages.registration_error'));
         }
 
         Auth::login($user);

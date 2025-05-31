@@ -11,4 +11,20 @@
     --color-admin: #FF9800;
     --color-office: #2196F3;
     --color-driver: #669698;
+
+    --animate-show-popup: show-popup 6s ease-in-out ;
+    @keyframes show-popup {
+        0%{
+            opacity: 0;
+        }
+        10%{
+            opacity: 100%;
+        }
+        90%{
+            opacity: 100%;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
 }
