@@ -6,6 +6,6 @@
     };
 @endphp
 
-<a href="{{ route('registration') }}" {{ $attributes->merge(['class' => $class]) }}>
+<a {{ $attributes->merge(['class' => $class]) }}>
     {{ $slot }}
 </a>

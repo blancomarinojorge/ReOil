@@ -7,8 +7,16 @@
     "password": "password",
     "Enter your password": "Enter your password",
     "Login": "Login",
-    "Forgot password": "Forgot password",
+    "Forgot password?": "Forgot password?",
     "Terms of Service": "Terms of Service",
     "Privacy Policy": "Privacy Policy",
-    "Cookie Policy": "Cookie Policy"
+    "Cookie Policy": "Cookie Policy",
+    "Create your account": "Create your account",
+    "Enter your company name and your new admin account credentials": "Enter your company name and your new admin account credentials",
+    "company name": "company name",
+    "Sign Up": "Sign Up",
+    "Repeat your password": "Repeat your password",
+    "Enter your company name": "Enter your company name",
+    "Don´t have an account?": "Don´t have an account?",
+    "Already have an account?": "Already have an account?"
 }

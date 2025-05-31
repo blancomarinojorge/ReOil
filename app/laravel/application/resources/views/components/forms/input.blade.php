@@ -1,4 +1,4 @@
-@props(['label', 'name','required'])
+@props(['label', 'name','required' => false, 'placeholder' => ''])
 
 @php
 $default = [
@@ -6,6 +6,7 @@ $default = [
     'id' => $name,
     'name' => $name,
     'value' => old($name),
+    'placeholder' => $placeholder,
     'class' => "border-1 py-3 px-5 focus:outline-none border-tertiary/40 focus:border-tertiary/70"
 ];
 @endphp

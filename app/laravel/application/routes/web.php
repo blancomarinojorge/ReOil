@@ -6,9 +6,7 @@ use App\Http\Controllers\Auth\SessionController;
 use App\Http\Middleware\Auth\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('guest');
+Route::view('/', 'hero-page')->name('hero.page');
 
 Route::get('/home', RedirectHomeController::class)
     ->middleware(['auth'])
