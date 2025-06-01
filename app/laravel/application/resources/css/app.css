@@ -12,6 +12,10 @@
     --color-office: #2196F3;
     --color-driver: #669698;
 
+    /* MESSAGE POPUPS ANIMATION
+        - be careful modifying the animation duration, its used too in the component js
+        - component: global/pop-up-notification.blade.php
+     */
     --animate-show-popup: show-popup 6s ease-in-out ;
     @keyframes show-popup {
         0%{
@@ -24,6 +28,25 @@
             opacity: 100%;
         }
         100% {
+            opacity: 0;
+        }
+    }
+
+    /* HERO PAGE SLIDER */
+    --animate-slide-images: slide-images 50s linear infinite;
+    @keyframes slide-images {
+        from{
+            transform: translateX(0);
+            opacity: 0;
+        }
+        15%{
+            opacity: 100%;
+        }
+        85%{
+            opacity: 100%;
+        }
+        to{
+            transform: translateX(-50%);
             opacity: 0;
         }
     }

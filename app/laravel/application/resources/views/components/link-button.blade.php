@@ -6,6 +6,6 @@
     };
 @endphp
 
-<a {{ $attributes->merge(['class' => $class]) }}>
+<a {{ $attributes->twMerge(['class' => $class]) }}>
     {{ $slot }}
 </a>
