@@ -1,1 +1,3 @@
-{{ __("Login to your account.") }}
+<x-layout>
+
+</x-layout>
