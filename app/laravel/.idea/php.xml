@@ -144,6 +144,8 @@
       <path value="$PROJECT_DIR$/application/vendor/symfony/http-foundation" />
       <path value="$PROJECT_DIR$/application/vendor/gehrisandro/tailwind-merge-php" />
       <path value="$PROJECT_DIR$/application/vendor/gehrisandro/tailwind-merge-laravel" />
+      <path value="$PROJECT_DIR$/application/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/application/vendor/php-debugbar/php-debugbar" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

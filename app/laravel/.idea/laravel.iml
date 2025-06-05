@@ -136,6 +136,8 @@
       <excludeFolder url="file://$MODULE_DIR$/application/storage/framework" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/gehrisandro/tailwind-merge-laravel" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/gehrisandro/tailwind-merge-php" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/barryvdh/laravel-debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/php-debugbar/php-debugbar" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
