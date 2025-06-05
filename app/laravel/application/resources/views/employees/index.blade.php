@@ -21,23 +21,27 @@
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-                    <tr onclick="window.location.href='{{ "/" }}';" class="hover:bg-secondary-soft/80 hover:cursor-pointer">
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 flex gap-3 items-center">
-                            <div class="w-8">
-                                <img src="{{ Vite::asset('resources/img/user-photos/1.png') }}" title="{{ Auth::user()->name }}" alt="Your photo" class="object-cover h-full w-full">
-                            </div>
-                            Jorge Blanco Mariño
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">1</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">49558392F</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">Administrador</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">2025-05-27 19:06:21</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-end">
-                            <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-error/70 hover:text-error hover:cursor-pointer focus:outline-hidden focus:text-error disabled:opacity-50 disabled:pointer-events-none">Delete</button>
-                        </td>
-                    </tr>
+                <tr onclick="window.location.href='{{ "/" }}';" class="hover:bg-secondary-soft/80 hover:cursor-pointer">
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 flex gap-3 items-center">
+                        <div class="w-8">
+                            <img src="{{ Vite::asset('resources/img/user-photos/1.png') }}" title="{{ Auth::user()->name }}" alt="Your photo" class="object-cover h-full w-full">
+                        </div>
+                        Jorge Blanco Mariño
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">1</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">49558392F</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">Administrador</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-neutral-200 ">2025-05-27 19:06:21</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-end">
+                        <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-error/70 hover:text-error hover:cursor-pointer focus:outline-hidden focus:text-error disabled:opacity-50 disabled:pointer-events-none">Delete</button>
+                    </td>
+                </tr>
                 </tbody>
             </table>
+
+            @foreach($users as $user)
+                <p>{{ $user->name }}</p>
+            @endforeach
         </div>
     </article>
 </x-layout>

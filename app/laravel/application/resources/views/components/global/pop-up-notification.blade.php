@@ -1,5 +1,5 @@
 @php
-    $class = "hidden flex-col items-center gap-6 absolute left-1/2 bottom-10 py-5 px-8 bg-secondary-soft rounded-md border-[1px] translate-x-[-50%] max-w-xl sm:flex-row opacity-0 animate-show-popup ";
+    $class = "hidden flex-col items-center gap-6 fixed left-1/2 bottom-10 py-5 px-8 bg-secondary-soft rounded-md border-[1px] translate-x-[-50%] max-w-xl sm:flex-row opacity-0 animate-show-popup ";
     $iconPath = '';
     $message = '';
     if (session('success')){

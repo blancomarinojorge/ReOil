@@ -1,3 +1,3 @@
-<a {{ $attributes->twMerge(['class' => 'underline']) }}>
+<a {{ $attributes->twMerge(['class' => 'underline hover:text-tertiary']) }}>
     {{ $slot }}
 </a>

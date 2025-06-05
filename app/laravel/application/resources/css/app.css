@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
-@theme {
+/* podo cambialos o final pa ter modo claro */
+:root{
     --font-primary: "Poppins", sans-serif;
     --color-primary: #D8FF7E;
     --color-secondary: #000000;
@@ -11,6 +12,34 @@
     --color-admin: #FF9800;
     --color-office: #2196F3;
     --color-driver: #669698;
+}
+
+.dark{
+    --color-primary: #D8FF7E;
+    --color-secondary: #000000;
+    --color-tertiary: #FFFFFF;
+    --color-secondary-soft: #1D1D1D;
+    --color-muted: #7F7F7F;
+    --color-error: #F0625C;
+    --color-admin: #FF9800;
+    --color-office: #2196F3;
+    --color-driver: #669698;
+}
+
+@theme {
+    --font-primary: var(--font-primary);
+    --color-primary: var(--color-primary);
+    --color-secondary: var(--color-secondary);
+    --color-tertiary: var(--color-tertiary);
+    --color-secondary-soft: var(--color-secondary-soft);
+    --color-muted: var(--color-muted);
+    --color-error: var(--color-error);
+    --color-admin: var(--color-admin);
+    --color-office: var(--color-office);
+    --color-driver: var(--color-driver);
+
+    /* header height */
+    --header-height: 4.5rem;
 
     /* MESSAGE POPUPS ANIMATION
         - be careful modifying the animation duration, its used too in the component js
@@ -51,3 +80,4 @@
         }
     }
 }
+

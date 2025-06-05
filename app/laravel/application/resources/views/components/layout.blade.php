@@ -7,5 +7,10 @@
         @endisset
     </x-header.header>
 
-
+    <main class="flex flex-row pt-[var(--header-height)]">
+        <x-global.navbar.navigation-bar/>
+        <section class="grow overflow-x-scroll">
+            {{ $slot }}
+        </section>
+    </main>
 </x-app>

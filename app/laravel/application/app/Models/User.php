@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -59,6 +60,12 @@ class User extends Authenticatable
         static::addGlobalScope('excludeSoftDeletedFromAuth', function ($builder) {
             $builder->whereNull('deleted_at');
         });
+    }
+
+    public function scopeFromSameCompany($query){
+        if(Auth::check()){
+            $query->where('company_id',Auth::user()->company_id);
+        }
     }
 
     public function company(): BelongsTo{

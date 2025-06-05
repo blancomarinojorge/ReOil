@@ -1,4 +1,7 @@
 {
+    "Admin": "Admin",
+    "Trucker": "Trucker",
+    "Office Assistant": "Office Assistant",
     "Login to your account": "Login to your account",
     "Enter the email address provided by your administrator": "Enter the email address provided by your administrator",
     "email": "email",
@@ -18,5 +21,9 @@
     "Repeat your password": "Repeat your password",
     "Enter your company name": "Enter your company name",
     "Don´t have an account?": "Don´t have an account?",
-    "Already have an account?": "Already have an account?"
+    "Already have an account?": "Already have an account?",
+    "Employees": "Employees",
+    "Trucks": "Trucks",
+    "Company": "Company",
+    "New Employee": "New Employee"
 }

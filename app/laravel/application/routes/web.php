@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RedirectHomeController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\SessionController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\Auth\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::prefix('/admin')
     ->group(function(){
         Route::view('/', 'admin.index')->name('index');
     });
+
+Route::get('/employees', [UserController::class,'index'])
+    ->middleware(['auth'])
+    ->name('employees');

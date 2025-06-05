@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Auth\Role;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +32,8 @@ class UserFactory extends Factory
             'surname2' => fake()->lastname(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('abc123..'), //i just do the passwd hashing 1 time, much faster
+            'role' => fake()->randomElement([Role::Driver, Role::OfficeStaff]),
             'remember_token' => Str::random(10),
         ];
     }
