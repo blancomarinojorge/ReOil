@@ -1,7 +1,8 @@
-<form {{ $attributes(['method' => 'GET']) }}>
-    @if($attributes->get('method', 'GET') !== 'GET')
+@props(['method'=>'GET'])
+<form @if($method != 'GET') method="POST" @endif {{ $attributes }}>
+    @if($method !== 'GET')
         @csrf
-        @method($attributes->get('method'))
+        @method($method)
     @endif
     {{ $slot }}
 </form>

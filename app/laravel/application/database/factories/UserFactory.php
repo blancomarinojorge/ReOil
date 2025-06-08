@@ -28,12 +28,15 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'company_id' => Company::factory(),
-            'surname1' => fake()->lastname(),
-            'surname2' => fake()->lastname(),
+            'surname_1' => fake()->lastname(),
+            'surname_2' => fake()->lastname(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('abc123..'), //i just do the passwd hashing 1 time, much faster
             'role' => fake()->randomElement([Role::Driver, Role::OfficeStaff]),
+            'dni' => '49330294R',
+            'phone' => fake()->phoneNumber(),
+            'company_phone' => fake()->phoneNumber(),
             'remember_token' => Str::random(10),
         ];
     }

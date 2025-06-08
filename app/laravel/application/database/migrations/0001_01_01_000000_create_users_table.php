@@ -16,12 +16,15 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Company::class);
             $table->string('name');
-            $table->string('surname1')->nullable();
-            $table->string('surname2')->nullable();
+            $table->string('surname_1')->nullable();
+            $table->string('surname_2')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role');
+            $table->string('phone')->nullable();
+            $table->string('company_phone')->nullable();
+            $table->string('dni')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

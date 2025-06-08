@@ -35,23 +35,23 @@ class RegistrationController extends Controller
             'password' => $attributes['password'],
         ];
         $companyName = $attributes['company'];
-        $userName = "Admin ". $companyName;
 
         /** @var User $user */
         $user = null;
         // we create the company and then the admin user for it, rollback if error
         try{
-            DB::transaction(function () use (&$user,$userAttributes, $companyName, $userName) {
+            DB::transaction(function () use (&$user,$userAttributes, $companyName) {
                 $company = Company::create([
                     'name' => $companyName,
                 ]);
                 $user = $company->users()->create(array_merge($userAttributes, [
-                    'name' => $userName,
+                    'name' => 'Admin',
+                    'surname_1' => $company->name,
                     'role' => Role::Admin
                 ]));
             }, 5);
         } catch (\Throwable $e) {
-            Log::error('Registration failed', [
+            Log::error('Registration failed. Email: '.$attributes['email'], [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);

@@ -10,9 +10,9 @@ class RedirectHomeController extends Controller
 {
     public function __invoke(){
         return match (Auth::user()->role){
-            Role::Admin => redirect(route('admin.index')),
+            Role::Admin => redirect(route('admin.dashboard')),
             Role::Driver => redirect('/driver'),
-            Role::OfficeStaff => redirect('/office'),
+            Role::OfficeStaff => redirect(route('office.dashboard')),
         };
     }
 }

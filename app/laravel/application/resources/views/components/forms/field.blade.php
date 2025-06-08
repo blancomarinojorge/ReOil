@@ -1,6 +1,6 @@
 @props(['label','name','required' => false])
 
-<div class="flex flex-col gap-2">
+<div {{ $attributes->twMerge(['class' => "flex flex-col gap-2"]) }}>
     @if($label)
         <x-forms.label :$label :$name :$required></x-forms.label>
     @endif

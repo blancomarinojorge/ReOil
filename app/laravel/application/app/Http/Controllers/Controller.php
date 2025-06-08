@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+use App\Traits\HandlesResourceActions;
+use Barryvdh\Debugbar\Controllers\BaseController;
+
+abstract class Controller extends BaseController
 {
-    //
+    use HandlesResourceActions;
 }

@@ -1,4 +1,4 @@
-<nav id="nav-bar" class="top-[var(--header-height)] flex flex-col  h-[calc(100vh-var(--header-height))] w-70 py-6 px-4 sticky bg-tertiary/5">
+<nav id="nav-bar" class="top-[var(--header-height)] flex flex-col  h-[calc(100vh-var(--header-height))] w-70 min-w-70 py-6 px-4 sticky bg-tertiary/5">
     <div class="border-b border-b-muted py-2 px-3 text-muted">
         {{ __(Auth::user()->role->label()) }}
     </div>
@@ -6,6 +6,6 @@
         <x-global.navbar.admin-nav-items/>
     </div>
     <div class="text-center">
-        <h4 class="text-xl text-tertiary/80">Ingaroil SL</h4>
+        <h4 class="text-xl text-tertiary/80 truncate overflow-hidden">{{ Auth::user()->company->name }}</h4>
     </div>
 </nav>

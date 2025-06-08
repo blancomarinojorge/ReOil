@@ -20,4 +20,8 @@ class Company extends Model
     public function users(): HasMany{
         return $this->hasMany(User::class);
     }
+
+    public function trucks(): HasMany{
+        return $this->hasMany(Truck::class);
+    }
 }

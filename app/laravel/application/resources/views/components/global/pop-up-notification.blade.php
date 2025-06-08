@@ -36,6 +36,17 @@
                 popUp.classList.add('hidden');
             }, 6000);
         });
+
+        // Fix: prevent showing popup again when navigating back via back-forward cache (if the user goes to another page buck clicks go back to this one)
+        // if the user did that, the popup will show, because it has the session key in the back-fordward cache of the browser
+        // TODO doesnt work
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted) {
+                const popUp = document.getElementById('info-message-popup');
+                console.log('wtfff')
+                if (popUp) popUp.remove();
+            }
+        });
     </script>
 @endif
 

@@ -11,6 +11,28 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property int $company_id
+ * @property string $name
+ * @property string|null $surname_1
+ * @property string|null $surname_2
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property int $role
+ * @property string $dni
+ * @property string $phone
+ * @property string $company_phone
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ *
+ * @property-read \App\Models\Company $company
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -23,11 +45,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'surname',
-        'surname2',
+        'surname_1',
+        'surname_2',
         'email',
         'password',
         'role',
+        'company_id',
+        'phone',
+        'company_phone',
+        'dni'
     ];
 
     /**
@@ -52,14 +78,6 @@ class User extends Authenticatable
             'password' => 'hashed',
             'role' => Role::class,
         ];
-    }
-
-    //prevent soft deleted users from login
-    protected static function booted(): void
-    {
-        static::addGlobalScope('excludeSoftDeletedFromAuth', function ($builder) {
-            $builder->whereNull('deleted_at');
-        });
     }
 
     public function scopeFromSameCompany($query){
