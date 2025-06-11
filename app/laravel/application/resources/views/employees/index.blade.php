@@ -1,6 +1,6 @@
 <x-layout>
     <x-global.top-bar :title="__('Employees')" :breadcrumbs-items="[
-        ['label'=>__('Employees'), 'href'=>route('home')],
+        ['label'=>__('Employees')],
     ]">
         @can('create', \App\Models\User::class)
             <div class="flex items-center">

@@ -23,4 +23,13 @@ return [
     'truck_deletion_success' => 'Truck deleted successfully',
     'truck_deletion_error' => 'Unknown error trying to delete the truck. Please try again or contact support if the problem persists',
 
+    'company_update_error' => 'Unknow error trying to update the company. Please try again or contact support if the problem persists',
+    'company_update_success' => 'Company information updated successfully',
+
+    'client_creation_success' => 'Client created successfully',
+    'client_creation_error' => 'Unknow error trying to create the client. Please try again or contact support if the problem persists',
+    'client_update_success' => 'Client updated successfully',
+    'client_update_error' => 'Unknown error trying to update the client. Please try again or contact support if the problem persists',
+    'client_deletion_success' => 'Client deleted successfully',
+    'client_deletion_error' => 'Unknown error trying to delete the client. Please try again or contact support if the problem persists',
 ];

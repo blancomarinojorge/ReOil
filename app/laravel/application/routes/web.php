@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\RedirectHomeController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\SessionController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Auth\IsAdmin;
@@ -75,5 +77,12 @@ Route::middleware('auth')->group(function () {
 
     //Truck routes. I do it with resources, applying the Policy in the controller
     Route::resource('trucks', TruckController::class)->names('trucks');
+
+    //Company, i make it a singleton because a user can only have one company attached (/companies/34 doesnt make much sense)
+    Route::singleton('company', CompanyController::class)
+        ->middleware(IsAdmin::class)
+        ->names('company');
+
+    Route::resource('clients', ClientController::class)->names('clients');
 });
 

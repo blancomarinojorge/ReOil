@@ -17,7 +17,8 @@ class TruckFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'license_plate' => $this->faker->unique()->regexify('[0-9]{4}[A-Z]{3}'),
         ];
     }
 }

@@ -47,5 +47,18 @@
     "Actions": "Actions",
     "Truck data": "Truck data",
     "Edit truck": "Edit truck",
-    "Truck info": "Truck info"
+    "Truck info": "Truck info",
+    "Your company": "Your company",
+    "Edit company": "Edit company",
+    "Company data": "Company data",
+    "nif": "nif",
+    "Clients": "Clients",
+    "New client": "New client",
+    "Contact data": "Contact data",
+    "Location data": "Location data",
+    "address": "address",
+    "coordinates": "coordinates",
+    "Client data": "Client data",
+    "Edit client": "Edit client",
+    "Edit client info": "Edit client info"
 }
