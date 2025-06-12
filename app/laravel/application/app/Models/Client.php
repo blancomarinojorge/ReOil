@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  *
  * @property-read \App\Models\Company $company
+ * @property-read \App\Models\Container $containers
 */
 class Client extends Model
 {
@@ -38,6 +40,10 @@ class Client extends Model
 
     public function company(): BelongsTo{
         return $this->belongsTo(Company::class);
+    }
+
+    public function containers(): HasMany{
+        return $this->hasMany(Container::class);
     }
 
 

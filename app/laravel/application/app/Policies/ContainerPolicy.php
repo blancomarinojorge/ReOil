@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Enums\Auth\Role;
-use App\Models\Truck;
+use App\Models\Container;
 use App\Models\User;
 
-class TruckPolicy
+class ContainerPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,16 +19,11 @@ class TruckPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Truck $model): bool
+    public function view(User $user, Container $container): bool
     {
-        if ($user->company_id !== $model->company_id) {
+        if ($container->client->company_id !== $user->company_id) {
             return false;
         }
-
-        if ($user->role !== Role::Admin && $user->role !== Role::OfficeStaff) {
-            return false;
-        }
-
         return true;
     }
 
@@ -37,18 +32,17 @@ class TruckPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === Role::Admin || $user->role === Role::OfficeStaff;
+        return true;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Truck $model): bool
+    public function update(User $user, Container $container): bool
     {
-        if ($user->company_id !== $model->company_id) {
+        if ($container->client->company_id !== $user->company_id) {
             return false;
         }
-
         if ($user->role !== Role::Admin && $user->role !== Role::OfficeStaff) {
             return false;
         }
@@ -59,13 +53,12 @@ class TruckPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Truck $model): bool
+    public function delete(User $user, Container $container): bool
     {
-        if ($user->company_id !== $model->company_id) {
+        if ($container->client->company_id !== $user->company_id) {
             return false;
         }
-
-        if ($user->role !== Role::Admin) {
+        if ($user->role !== Role::Admin && $user->role !== Role::OfficeStaff) {
             return false;
         }
 
@@ -75,12 +68,11 @@ class TruckPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Truck $model): bool
+    public function restore(User $user, Container $container): bool
     {
-        if ($user->company_id !== $model->company_id) {
+        if ($container->client->company_id !== $user->company_id) {
             return false;
         }
-
         if ($user->role !== Role::Admin) {
             return false;
         }
@@ -91,12 +83,11 @@ class TruckPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Truck $model): bool
+    public function forceDelete(User $user, Container $container): bool
     {
-        if ($user->company_id !== $model->company_id) {
+        if ($container->client->company_id !== $user->company_id) {
             return false;
         }
-
         if ($user->role !== Role::Admin) {
             return false;
         }

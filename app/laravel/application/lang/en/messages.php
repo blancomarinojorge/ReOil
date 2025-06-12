@@ -32,4 +32,25 @@ return [
     'client_update_error' => 'Unknown error trying to update the client. Please try again or contact support if the problem persists',
     'client_deletion_success' => 'Client deleted successfully',
     'client_deletion_error' => 'Unknown error trying to delete the client. Please try again or contact support if the problem persists',
+
+    'residue_creation_success' => 'Residue created successfully',
+    'residue_creation_error' => 'Unknown error trying to create the residue. Please try again or contact support if the problem persists',
+    'residue_update_success' => 'Residue updated successfully',
+    'residue_update_error' => 'Unknown error trying to update the residue. Please try again or contact support if the problem persists',
+    'residue_deletion_success' => 'Residue deleted successfully',
+    'residue_deletion_error' => 'Unknown error trying to delete the residue. Please try again or contact support if the problem persists',
+
+    'container_type_creation_success' => 'Container type created successfully',
+    'container_type_creation_error' => 'Unknown error trying to create the container type. Please try again or contact support if the problem persists',
+    'container_type_update_success' => 'Container type updated successfully',
+    'container_type_update_error' => 'Unknown error trying to update the container type. Please try again or contact support if the problem persists',
+    'container_type_deletion_success' => 'Container type deleted successfully',
+    'container_type_deletion_error' => 'Unknown error trying to delete the container type. Please try again or contact support if the problem persists',
+
+    'client_container_creation_success' => 'Client container created successfully',
+    'client_container_creation_error' => 'Unknown error trying to create the client container. Please try again or contact support if the problem persists',
+    'client_container_update_success' => 'Client container updated successfully',
+    'client_container_update_error' => 'Unknown error trying to update the client container. Please try again or contact support if the problem persists',
+    'client_container_deletion_success' => 'Client container deleted successfully',
+    'client_container_deletion_error' => 'Unknown error trying to delete the client container. Please try again or contact support if the problem persists',
 ];

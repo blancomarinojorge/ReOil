@@ -87,6 +87,47 @@ class UserPolicy
             return false;
         }
 
+        if ($user->id === $model->id){
+            return false;
+        }
+
         return true;
+    }
+
+    /**
+     * Determine whether the user can restore the given soft-deleted user.
+     *
+     * @param  User  $user   The authenticated user.
+     * @param  User  $model  The user being restored.
+     * @return bool
+     */
+    public function restore(User $user, User $model): bool
+    {
+        if ($user->company_id !== $model->company_id) {
+            return false;
+        }
+
+        return $user->role === Role::Admin;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the given soft-deleted user.
+     *
+     * @param  User  $user   The authenticated user.
+     * @param  User  $model  The user being permanently deleted.
+     * @return bool
+     */
+    public function forceDelete(User $user, User $model): bool
+    {
+        if ($user->company_id !== $model->company_id) {
+            return false;
+        }
+
+        // Admins cannot force delete themselves either (optional)
+        if ($user->id === $model->id) {
+            return false;
+        }
+
+        return $user->role === Role::Admin;
     }
 }

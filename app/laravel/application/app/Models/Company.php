@@ -19,7 +19,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Truck[] $trucks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Client[] $clients
-*/
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Residue[] $residues
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ContainerType[] $containerTypes
+ */
 class Company extends Model
 {
     /** @use HasFactory<\Database\Factories\CompanyFactory> */
@@ -40,5 +42,13 @@ class Company extends Model
 
     public function clients(): HasMany{
         return $this->hasMany(Client::class);
+    }
+
+    public function residues(): HasMany{
+        return $this->hasMany(Residue::class);
+    }
+
+    public function containerTypes(): HasMany{
+        return $this->hasMany(ContainerType::class);
     }
 }

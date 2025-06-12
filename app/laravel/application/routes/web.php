@@ -5,6 +5,9 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContainerController;
+use App\Http\Controllers\ContainerTypeController;
+use App\Http\Controllers\ResidueController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Auth\IsAdmin;
@@ -43,7 +46,7 @@ Route::middleware('auth')->group(function () {
             Route::view('/', 'office.dashboard')->name('dashboard');
         });
 
-    // Employees routes
+    // Employees routes, this is what looks like if i do it manually, without resources (menos magia)
     Route::prefix('/employees')
         ->as('employees.')
         ->group(function () {
@@ -82,7 +85,9 @@ Route::middleware('auth')->group(function () {
     Route::singleton('company', CompanyController::class)
         ->middleware(IsAdmin::class)
         ->names('company');
-
     Route::resource('clients', ClientController::class)->names('clients');
+    Route::resource('residues', ResidueController::class)->names('residues');
+    Route::resource('container_types', ContainerTypeController::class)->names('container_types');
+    Route::resource('containers', ContainerController::class)->names('containers');
 });
 
