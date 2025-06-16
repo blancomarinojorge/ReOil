@@ -2,18 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRouteRequest;
-use App\Http\Requests\UpdateRouteRequest;
+use App\Enums\Auth\Role;
+use App\Enums\RouteState;
+use App\Http\Requests\Route\StoreRouteRequest;
+use App\Http\Requests\Route\UpdateRouteRequest;
 use App\Models\Route;
+use App\Models\Truck;
+use App\Models\User;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RouteController extends Controller
 {
+    use AuthorizesRequests;
+
+    public function __construct(Request $request)
+    {
+        $this->authorizeResource(Route::class, 'route');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        /** @var Builder $routes */
+        $routes = match (Auth::user()->role) {
+            Role::Admin => Route::whereHas('creator', function ($query) { $query->where('company_id', Auth::user()->company_id); }),
+            Role::OfficeStaff => Route::where('creator_id', Auth::user()->id)->latest(),
+            Role::Driver => Route::where('driver_id', Auth::user()->id)->latest(),
+        };
+
+        $routes = $routes
+            ->with(['driver', 'creator', 'truck'])
+            ->latest()
+            ->paginate();
+
+        return view('routes.index', compact('routes'));
     }
 
     /**
@@ -21,7 +48,9 @@ class RouteController extends Controller
      */
     public function create()
     {
-        //
+        $trucks = Truck::where('company_id', Auth::user()->company_id)->get();
+        $drivers = User::where('company_id', Auth::user()->company_id)->where('role', Role::Driver)->get();
+        return view('routes.create', compact('trucks', 'drivers'));
     }
 
     /**
@@ -29,7 +58,17 @@ class RouteController extends Controller
      */
     public function store(StoreRouteRequest $request)
     {
-        //
+        return $this->tryAction(
+            function () use ($request) {
+                Route::create(array_merge(
+                    $request->validated(),
+                    ['creator_id' => Auth::user()->id, 'state' => RouteState::DRAFT->value]
+                ));
+            },
+            __('messages.route_creation_success'),
+            __('messages.route_creation_error'),
+            route('routes.index')
+        );
     }
 
     /**
@@ -37,7 +76,8 @@ class RouteController extends Controller
      */
     public function show(Route $route)
     {
-        //
+        $route = $route->load(['driver', 'truck']);
+        return view('routes.show', compact('route'));
     }
 
     /**
@@ -45,7 +85,9 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        //
+        $trucks = Truck::where('company_id', Auth::user()->company_id)->get();
+        $drivers = User::where('company_id', Auth::user()->company_id)->where('role', Role::Driver)->get();
+        return view('routes.edit', compact('trucks', 'drivers','route'));
     }
 
     /**
@@ -53,7 +95,12 @@ class RouteController extends Controller
      */
     public function update(UpdateRouteRequest $request, Route $route)
     {
-        //
+        return $this->tryAction(
+            fn() => $route->update($request->validated()),
+            __('messages.route_update_success'),
+            __('messages.route_update_error'),
+            route('routes.show', $route->id)
+        );
     }
 
     /**
@@ -61,6 +108,11 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
-        //
+        return $this->tryAction(
+            fn() => $route->delete(),
+            __('messages.route_deletion_success'),
+            __('messages.route_deletion_error'),
+            route('routes.index')
+        );
     }
 }

@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('route', function (Blueprint $table) {
+        Schema::create('routes', function (Blueprint $table) {
             $table->id();
             $table->integer('state')->default(0);
             $table->string('description')->nullable();
             $table->dateTime('start_date');
-            $table->dateTime('started_at');
-            $table->dateTime('finished_at');
-            $table->foreignIdFor(User::class, 'id_creator_user');
-            $table->foreignIdFor(User::class, 'id_driver_user');
+            $table->dateTime('started_at')->nullable();
+            $table->dateTime('finished_at')->nullable();
+            $table->foreignIdFor(User::class, 'creator_id');
+            $table->foreignIdFor(User::class, 'driver_id');
             $table->foreignIdFor(Truck::class);
             $table->softDeletes();
             $table->timestamps();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('route');
+        Schema::dropIfExists('routes');
     }
 };

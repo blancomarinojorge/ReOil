@@ -1,5 +1,5 @@
 <x-layout>
-    <x-global.top-bar :title="__('Edit client container')" :breadcrumbs-items="[
+    <x-global.top-bar :title="__('New client container')" :breadcrumbs-items="[
         ['label'=>__('Containers'), 'href'=>route('containers.index')],
         ['label'=> __('New client container')],
     ]">

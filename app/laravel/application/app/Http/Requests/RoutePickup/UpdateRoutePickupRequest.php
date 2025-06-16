@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\RoutePickup;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRouteRequest extends FormRequest
+class UpdateRoutePickupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

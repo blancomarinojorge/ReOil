@@ -10,6 +10,6 @@
     ];
 @endphp
 
-<x-forms.field :$name :$label :$required {{ $attributes->twMerge(['class' => '']) }}>
+<x-forms.field :$name :$label :$required {{ $attributes->twMerge(['class' => 'overflow-x-hidden']) }}>
     <textarea {{ $attributes($default) }}>{{ $default['value'] }}</textarea>
 </x-forms.field>

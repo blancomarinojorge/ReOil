@@ -32,10 +32,6 @@
                     </div>
                 </div>
             </div>
-            <div class="flex gap-3 justify-end">
-                <x-link-button href="{{ route('containers.show', $container->id) }}" type="secondary">{{ __('Cancel') }}</x-link-button>
-                <x-forms.button class="px-10">{{ __('Save') }}</x-forms.button>
-            </div>
         </div>
     </article>
 </x-layout>

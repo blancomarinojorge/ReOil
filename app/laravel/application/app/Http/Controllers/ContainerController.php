@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreContainerRequest;
-use App\Http\Requests\UpdateContainerRequest;
+use App\Http\Requests\Container\StoreContainerRequest;
+use App\Http\Requests\Container\UpdateContainerRequest;
 use App\Models\Client;
 use App\Models\Container;
 use App\Models\ContainerType;
@@ -77,7 +77,7 @@ class ContainerController extends Controller
             fn() => $container->update($request->validated()),
             __('messages.client_container_update_success'),
             __('messages.client_container_update_error'),
-            route('containers.index')
+            route('containers.show', $container->id)
         );
     }
 

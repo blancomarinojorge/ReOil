@@ -12,6 +12,9 @@
     --color-admin: #FF9800;
     --color-office: #2196F3;
     --color-driver: #669698;
+
+    --color-pending: #8AA8A9;
+    --color-completed: #4CAF50;
 }
 
 .dark{
@@ -37,6 +40,13 @@
     --color-admin: var(--color-admin);
     --color-office: var(--color-office);
     --color-driver: var(--color-driver);
+
+    /* states colors */
+    --color-draft: var(--color-muted);
+    --color-pending: var(--color-pending);
+    --color-in-progress: var(--color-primary);
+    --color-completed: var(--color-completed);
+    --color-cancelled: var(--color-error);
 
     /* header height */
     --header-height: 4.5rem;
@@ -77,6 +87,20 @@
         to{
             transform: translateX(-50%);
             opacity: 0;
+        }
+    }
+
+
+    /* states animation */
+    --animate-state-point: animate-state 0.7s ease-out infinite;
+    @keyframes animate-state {
+        from{
+            opacity: 0.9;
+            transform: scale(0);
+        }
+        to{
+            opacity: 0;
+            transform: scale(1);
         }
     }
 }

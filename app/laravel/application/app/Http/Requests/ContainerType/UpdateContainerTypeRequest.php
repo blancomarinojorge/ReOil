@@ -22,10 +22,8 @@ class UpdateContainerTypeRequest extends FormRequest
             'unit' => ['required', Rule::enum(Unit::class)],
             'un_code' => ['nullable', 'string', 'max:255',
                 Rule::unique('container_types', 'un_code')->where(function ($query) {
-                    $query
-                        ->where('company_id', Auth::user()->company_id)
-                        ->ignore($this->route('container_type')->id);
-                })
+                    $query->where('company_id', Auth::user()->company_id);
+                })->ignore($this->route('container_type')->id)
             ],
             'length_cm' => 'nullable|required_with:width_cm,height_cm|numeric|min:1',
             'width_cm' => 'nullable|required_with:length_cm,height_cm|numeric|min:1',

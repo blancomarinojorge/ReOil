@@ -2,18 +2,22 @@
 
 namespace App\Policies;
 
+use App\Enums\Auth\Role;
 use App\Models\Route;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class RoutePolicy
 {
+    protected function isSameCompany(User $user, Route $route){
+        return $route->creator->company_id === $user->company_id;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return in_array($user->role, Role::cases());
     }
 
     /**
@@ -21,7 +25,13 @@ class RoutePolicy
      */
     public function view(User $user, Route $route): bool
     {
-        return false;
+        if (!$this->isSameCompany($user, $route)) return false;
+
+        if ($user->role === Role::Driver && $route->driver_id !== $user->id) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -29,7 +39,7 @@ class RoutePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->role === Role::Admin || $user->role === Role::OfficeStaff;
     }
 
     /**
@@ -37,7 +47,27 @@ class RoutePolicy
      */
     public function update(User $user, Route $route): bool
     {
-        return false;
+        if (!$this->isSameCompany($user, $route)) return false;
+
+        if ($user->role === Role::Driver) {
+            return false;
+        }
+
+        if ($user->role === Role::OfficeStaff && $route->creator_id !== $user->id) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function updateState(User $user, Route $route): bool{
+        if (!$this->isSameCompany($user, $route)) return false;
+
+        if($user->role === Role::Driver && $route->driver_id !== $user->id){
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -45,7 +75,17 @@ class RoutePolicy
      */
     public function delete(User $user, Route $route): bool
     {
-        return false;
+        if (!$this->isSameCompany($user, $route)) return false;
+
+        if ($user->role === Role::Driver) {
+            return false;
+        }
+
+        if ($user->role === Role::OfficeStaff && $route->creator_id !== $user->id) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -53,7 +93,9 @@ class RoutePolicy
      */
     public function restore(User $user, Route $route): bool
     {
-        return false;
+        if (!$this->isSameCompany($user, $route)) return false;
+
+        return $user->role === Role::Admin;
     }
 
     /**
@@ -61,6 +103,8 @@ class RoutePolicy
      */
     public function forceDelete(User $user, Route $route): bool
     {
-        return false;
+        if (!$this->isSameCompany($user, $route)) return false;
+
+        return $user->role === Role::Admin;
     }
 }

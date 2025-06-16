@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Container;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class StoreContainerRequest extends FormRequest
+class UpdateContainerRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

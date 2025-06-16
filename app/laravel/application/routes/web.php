@@ -8,6 +8,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContainerController;
 use App\Http\Controllers\ContainerTypeController;
 use App\Http\Controllers\ResidueController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\RoutePickupController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Auth\IsAdmin;
@@ -89,5 +91,27 @@ Route::middleware('auth')->group(function () {
     Route::resource('residues', ResidueController::class)->names('residues');
     Route::resource('container_types', ContainerTypeController::class)->names('container_types');
     Route::resource('containers', ContainerController::class)->names('containers');
+    Route::resource('routes', RouteController::class)->names('routes');
+
+    ###### RoutePickup
+    //for pickups, i make the routes depend on Route when there is no id of the pickup, otherwise i just use normal routes, doing something like /routes/3/pickups/5 will just overcomplicate things
+    // Nested pickups for a route
+    Route::get('/routes/{route}/pickups', [RoutePickupController::class, 'index'])->name('routes.pickups.index');
+    Route::get('/routes/{route}/pickups/create', [RoutePickupController::class, 'create'])->name('routes.pickups.create');
+    Route::post('/routes/{route}/pickups', [RoutePickupController::class, 'store'])->name('routes.pickups.store');
+    // Flat routes for individual pickups
+    Route::get('/pickups/{pickup}', [RoutePickupController::class, 'show'])->name('pickups.show');
+    Route::get('/pickups/{pickup}/edit', [RoutePickupController::class, 'edit'])->name('pickups.edit');
+    Route::put('/pickups/{pickup}', [RoutePickupController::class, 'update'])->name('pickups.update');
+    Route::delete('/pickups/{pickup}', [RoutePickupController::class, 'destroy'])->name('pickups.destroy');
+
+
+    Route::get('/proba', function (){
+        return view('probaSactum');
+    });
+});
+
+Route::get('/proba', function (){
+    return view('probaSactum');
 });
 

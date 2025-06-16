@@ -53,4 +53,19 @@ return [
     'client_container_update_error' => 'Unknown error trying to update the client container. Please try again or contact support if the problem persists',
     'client_container_deletion_success' => 'Client container deleted successfully',
     'client_container_deletion_error' => 'Unknown error trying to delete the client container. Please try again or contact support if the problem persists',
+
+    'route_creation_success' => 'Route created successfully',
+    'route_creation_error' => 'Unknown error trying to create the route. Please try again or contact support if the problem persists',
+    'route_update_success' => 'Route updated successfully',
+    'route_update_error' => 'Unknown error trying to update the route. Please try again or contact support if the problem persists',
+    'route_deletion_success' => 'Route deleted successfully',
+    'route_deletion_error' => 'Unknown error trying to delete the route. Please try again or contact support if the problem persists',
+
+    'route_pickup_creation_success' => 'Route pickup created successfully',
+    'route_pickup_creation_error' => 'Unknown error trying to create the route pickup. Please try again or contact support if the problem persists',
+    'route_pickup_update_success' => 'Route pickup updated successfully',
+    'route_pickup_update_error' => 'Unknown error trying to update the route pickup. Please try again or contact support if the problem persists',
+    'route_pickup_deletion_success' => 'Route pickup deleted successfully',
+    'route_pickup_deletion_error' => 'Unknown error trying to delete the route pickup. Please try again or contact support if the problem persists',
+
 ];
