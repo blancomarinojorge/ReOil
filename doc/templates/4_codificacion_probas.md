@@ -18,20 +18,21 @@ A medida en que a aplicación avanzou, pantallas como a de creación de ruta vol
 
 Xa tiña en mente facer unha api para a aplicación de android, polo que planifiquei que a api valera tanto para android como para a aplicación web. Esto fixo que me xurdira un problema coa autenticación do usuario, debido a que debían funcionar con metodos distintos:
 
-Android
+#### Android
 A autenticación en android sería mediante tokens de acceso, o cal tería o seguinte funcionamento:
 
-O usuario manda unha petición para loguearse.
-O servidor recibe as credenciales e comproba que son correctas.
-Xenera un token para ese usuario e gardao na base de datos con encriptación.
-Responde a petición de login co novo token xerado (non encriptado).
-A aplicación android recibeo e gardao para usar en todas as próximas peticións a api.
-Web
+* O usuario manda unha petición para loguearse.
+* O servidor recibe as credenciales e comproba que son correctas.
+* Xenera un token para ese usuario e gardao na base de datos con encriptación.
+* Responde a petición de login co novo token xerado (non encriptado).
+* A aplicación android recibeo e gardao para usar en todas as próximas peticións a api.
+
+#### Web
 Dende a aplicación web deime de conta de que este metodo non funcionaría moi ben.
 
 A primeira idea que se me ocorreu foi: "Estou seguro de que podo obter os tokens de acceso para ese usuario con algo como $user->getTokens() e no momento de xerar a vista no servidor meter o token no header de todas as peticións ajax que fago nesa páxina". Obviamente non funcionaba, os tokens estaban cifrados na base de datos e o único momento no que se podía ver o token en texto plano era cando se xeraba un novo, polo que ou xeraba un token novo para ese usuario en cada petición, ou o gardaba en sesión e reutilizaba o mesmo durante toda a sesión. Ningunha das idea me acababa de convencer, ambas seguían facendo unha xeneración excesiva de tokens.
 
-Solución
+#### Solución
 Usando Laravel Sanctum, podense configurar as rutas de api para que usen sesións en vez de acceso mediante token para todas as peticións que proveñan de dominios especificos.
 
 Indico os dominios na configuración:
