@@ -43,6 +43,7 @@ docker compose up -d --build
 sh setup-app.sh
 ```
 _Opción sen script:_ `docker compose up -d --build`
+
 3. Se queremos ter datos ficticios na aplicación, executaremos o seguinte comando:
 ```shell
 docker exec -it laravel_app php artisan migrate --seed
