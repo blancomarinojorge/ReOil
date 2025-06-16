@@ -3,7 +3,7 @@
 ## Diagrama da arquitectura
 
 ## Diagrama de Base de Datos
-
+![esquema_ER.png](../img/esquema_ER.png)
 
 ## Deseño de interface de usuarios
 
@@ -16,3 +16,8 @@ Presentase o deseño da aplicación en movil, o cal servirá de base para facer 
 
 ### Paxina administración e oficina
 [Figma](https://www.figma.com/design/AEmPZPp5FDMhzTxkp7kCSN/Untitled?node-id=179-72&t=amkkqKePpYtFl8yp-1)
+
+
+Amosanse algunhas das páxinas:
+![route-pickups.png](../img/route-pickups.png)
+![usuarios.png](../img/usuarios.png)
