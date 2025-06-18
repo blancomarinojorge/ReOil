@@ -40,5 +40,8 @@ WORKDIR /var/www
 # Use the non-root user
 USER appuser
 
-# Start Laravel server
-CMD ["sh", "-c", "composer install && php artisan serve --host=0.0.0.0 --port=8000"]
+# 1. Install composer dependencies
+# 2. Install npm dependencies (VITE)
+# 3. Build the vite assets for production
+# 4. Start Laravel server
+CMD ["sh", "-c", "composer install && npm install && npm run build && php artisan serve --host=0.0.0.0 --port=8000"]
