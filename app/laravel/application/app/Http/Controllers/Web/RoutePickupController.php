@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Enums\PickupState;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RoutePickup\StoreRoutePickupRequest;
 use App\Http\Requests\RoutePickup\UpdateRoutePickupRequest;
 use App\Models\Client;

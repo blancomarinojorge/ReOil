@@ -121,8 +121,6 @@
                 }
             }
 
-            console.log(getPickupsElementsInDbOrder())
-
             //get the ids of the pickups containers in order
             function getCurrentOrder(){
                 return [...container.querySelectorAll("[draggable='true']")].map(pickupContainer => {
@@ -178,10 +176,37 @@
 
             btnSaveOrder.addEventListener('click', ()=>{
                 const currentOrder = getCurrentOrder();
+                console.log(JSON.stringify({
+                    pickups_ids: currentOrder
+                }));
 
-                console.log(currentOrder)
+                fetch("{{ route('routes.pickups.order', $route->id) }}",{
+                    method: "PATCH",
+                    credentials: 'same-origin',
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({
+                        pickups_ids: currentOrder
+                    })
+                }).then(response => {
+                    if(!response.ok){
+                        return response.json().then(err => { throw err; });
+                    }
+                    return response.json();
+                }).then(data => {
+                    showPopUpNotification(data.message); //global function from app.blade
+
+                    //reset the page state
+                    db_pickups_order = getCurrentOrder();
+                    pickupsElementsInDbOrder = getPickupsElementsInDbOrder();
+                    checkOrderStateAndShowOrHideButtons();
+                }).catch(err => {
+                    showPopUpNotification(err.error, true);
+                })
             });
-
         });
     </script>
 @endcan

@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Enums\Auth\Role;
+use App\Enums\PickupState;
 use App\Enums\RouteState;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Route\StoreRouteRequest;
 use App\Http\Requests\Route\UpdateRouteRequest;
 use App\Models\Route;
+use App\Models\RoutePickup;
 use App\Models\Truck;
 use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RouteController extends Controller
 {
@@ -59,17 +63,26 @@ class RouteController extends Controller
      */
     public function store(StoreRouteRequest $request)
     {
-        return $this->tryAction(
-            function () use ($request) {
-                Route::create(array_merge(
-                    $request->validated(),
-                    ['creator_id' => Auth::user()->id, 'state' => RouteState::DRAFT->value]
-                ));
-            },
-            __('messages.route_creation_success'),
-            __('messages.route_creation_error'),
-            route('routes.index')
-        );
+        try{
+            $route = Route::create(array_merge(
+                $request->validated(),
+                ['creator_id' => Auth::user()->id, 'state' => RouteState::DRAFT->value]
+            ));
+        }catch (\Exception $e){
+            Log::error('Action failed', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', __('messages.route_creation_error'));
+        }
+
+        return redirect()
+            ->route('routes.pickups.index', $route->id)
+            ->with('success', __('messages.route_creation_success'));
     }
 
     /**

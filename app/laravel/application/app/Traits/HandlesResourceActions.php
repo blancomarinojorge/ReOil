@@ -35,4 +35,27 @@ trait HandlesResourceActions
             ? redirect($redirectUrl)->with('success', __($successMessage))
             : redirect()->back()->with('success', __($successMessage));
     }
+
+    public function tryApiAction(callable $callback, string $successMessage, string $errorMessage, int $successCode = 200)
+    {
+        try {
+            $result = $callback();
+
+            return response()->json([
+                'message' => $successMessage,
+                'data' => $result ?? null,
+            ], $successCode);
+        } catch (\Exception $e) {
+            Log::error('API action failed', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json([
+                'message' => $errorMessage,
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
 }

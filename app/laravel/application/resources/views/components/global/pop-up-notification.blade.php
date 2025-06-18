@@ -1,52 +1,72 @@
 @php
-    $class = "hidden flex-col items-center gap-6 fixed left-1/2 bottom-10 py-5 px-8 bg-secondary-soft rounded-md border-[1px] translate-x-[-50%] max-w-xl sm:flex-row opacity-0 animate-show-popup ";
-    $iconPath = '';
-    $message = '';
-    if (session('success')){
-        $class.=" border-primary ";
-        $iconPath = "resources/img/check-success.svg";
-        $message = session('success');
-    }elseif (session('error')){
-        $class.=" border-error ";
-        $iconPath = "resources/img/cross-error.svg";
-        $message = session('error');
-    }
+    $initialMessage = session('success') ?? session('error') ?? '';
+    $initialIsError = session('error') ? true : false;
+
+    $baseClass = "hidden flex-col items-center gap-6 fixed left-1/2 bottom-10 py-5 px-8 bg-secondary-soft rounded-md border-[1px] translate-x-[-50%] max-w-xl sm:flex-row opacity-0 animate-show-popup";
 @endphp
 
-@if(session('success') || session('error'))
-    <div id="info-message-popup" {{ $attributes->twMerge(['class' => $class]) }}>
-        <img src="{{ Vite::asset($iconPath) }}" alt="icon" aria-disabled="true"/>
-        <span>{{ $message }}</span>
-    </div>
+<div id="info-message-popup" class="{{ $baseClass }} {{ $initialIsError ? 'border-error' : 'border-primary' }}" aria-live="polite" role="alert" style="opacity: 0;">
+    <img id="info-message-icon" src="{{ Vite::asset($initialIsError ? 'resources/img/cross-error.svg' : 'resources/img/check-success.svg') }}" alt="icon" aria-hidden="true" />
+    <span id="info-message-text">{{ $initialMessage }}</span>
+</div>
 
-    <!--
-        This is not a good practice, mainly because if we add more than one instace of this component the js will be loaded x times.
-        I do it here anyway just because this will be called only once globally in the app.
-    -->
-    <script>
-        /**
-         * sets the display do flex to show the animation, then hides it again so is not in the document flow
-         */
-        document.addEventListener('DOMContentLoaded', ()=>{
-            const popUp = document.getElementById('info-message-popup');
-            popUp.classList.remove('hidden');
-            popUp.classList.add('flex');
-            setTimeout(()=>{
-                popUp.classList.remove('flex');
-                popUp.classList.add('hidden');
+<script>
+    (function(){
+        const popup = document.getElementById('info-message-popup');
+        const icon = document.getElementById('info-message-icon');
+        const text = document.getElementById('info-message-text');
+        let hideTimeout;
+
+        function showPopup(message, isError = false) {
+            clearTimeout(hideTimeout);
+
+            // Update styles
+            popup.classList.remove('hidden');
+            popup.style.opacity = 1;
+            popup.classList.add('flex');
+
+            // Border color
+            popup.classList.toggle('border-error', isError);
+            popup.classList.toggle('border-primary', !isError);
+
+            // Icon and alt
+            icon.src = isError
+                ? "{{ Vite::asset('resources/img/cross-error.svg') }}"
+                : "{{ Vite::asset('resources/img/check-success.svg') }}";
+            icon.alt = isError ? "Error icon" : "Success icon";
+
+            // Text
+            text.textContent = message;
+
+            // Animate popup (you can tweak this if needed)
+            popup.classList.add('animate-show-popup');
+
+            // Auto hide after 6s
+            hideTimeout = setTimeout(() => {
+                popup.classList.remove('flex');
+                popup.style.opacity = 0;
+                popup.classList.add('hidden');
+                popup.classList.remove('animate-show-popup');
             }, 6000);
-        });
+        }
 
-        // Fix: prevent showing popup again when navigating back via back-forward cache (if the user goes to another page buck clicks go back to this one)
-        // if the user did that, the popup will show, because it has the session key in the back-fordward cache of the browser
-        // TODO doesnt work
+        // Show popup on initial load if session message exists
+        @if($initialMessage)
+        document.addEventListener('DOMContentLoaded', () => {
+            showPopup(@json($initialMessage), @json($initialIsError));
+        });
+        @endif
+
+        // Expose function globally
+        window.showPopUpNotification = showPopup;
+
+        // Prevent popup showing again on bfcache back navigation, TODO not working
         window.addEventListener('pageshow', function (event) {
             if (event.persisted) {
-                const popUp = document.getElementById('info-message-popup');
-                console.log('wtfff')
-                if (popUp) popUp.remove();
+                popup.classList.remove('flex');
+                popup.style.opacity = 0;
+                popup.classList.add('hidden');
             }
         });
-    </script>
-@endif
-
+    })();
+</script>

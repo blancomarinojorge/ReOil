@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Residue\StoreResidueRequest;
 use App\Http\Requests\Residue\UpdateResidueRequest;
 use App\Models\Residue;

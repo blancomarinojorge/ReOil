@@ -1,4 +1,6 @@
 {
+    "Success": "Success",
+    "Something went wrong": "Something went wrong",
     "Admin": "Admin",
     "Trucker": "Trucker",
     "Office Assistant": "Office Assistant",
@@ -120,5 +122,7 @@
     "This client has already been added to the route.": "This client has already been added to the route.",
     "My company": "My company",
     "clients": "clients",
-    "no clients yet": "no clients yet"
+    "no clients yet": "no clients yet",
+    "Route pickups order updated successfully": "Route pickups order updated successfully",
+    "Error updating route pickups order": "Error updating route pickups order"
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Truck\StoreTruckRequest;
 use App\Http\Requests\Truck\UpdateTruckRequest;
 use App\Models\Truck;

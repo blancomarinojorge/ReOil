@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ContainerType\StoreContainerTypeRequest;
 use App\Http\Requests\ContainerType\UpdateContainerTypeRequest;
 use App\Models\ContainerType;

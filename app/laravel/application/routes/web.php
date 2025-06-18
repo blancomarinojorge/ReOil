@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\Auth\RedirectHomeController;
-use App\Http\Controllers\Auth\RegistrationController;
-use App\Http\Controllers\Auth\SessionController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\ContainerController;
-use App\Http\Controllers\ContainerTypeController;
-use App\Http\Controllers\ResidueController;
-use App\Http\Controllers\RouteController;
-use App\Http\Controllers\RoutePickupController;
-use App\Http\Controllers\TruckController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\Auth\RedirectHomeController;
+use App\Http\Controllers\Web\Auth\RegistrationController;
+use App\Http\Controllers\Web\Auth\SessionController;
+use App\Http\Controllers\Web\ClientController;
+use App\Http\Controllers\Web\CompanyController;
+use App\Http\Controllers\Web\ContainerController;
+use App\Http\Controllers\Web\ContainerTypeController;
+use App\Http\Controllers\Web\ResidueController;
+use App\Http\Controllers\Web\RouteController;
+use App\Http\Controllers\Web\RoutePickupController;
+use App\Http\Controllers\Web\TruckController;
+use App\Http\Controllers\Web\UserController;
 use App\Http\Middleware\Auth\IsAdmin;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
