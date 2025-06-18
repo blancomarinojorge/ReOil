@@ -51,7 +51,7 @@
     }
 @endphp
 
-<div {{ $attributes->merge(['class' => "flex gap-2 items-center rounded-sm px-4 py-1 $containerClasses"]) }}>
+<div {{ $attributes->merge(['class' => "inline-flex gap-2 items-center rounded-sm px-4 py-1 $containerClasses"]) }}>
     <span class="w-3 h-3 rounded-full relative flex items-center justify-center {{ $circleClasses }}">
         <div class="absolute w-full h-full rounded-full animate-state-point {{ $absoluteCircleClasses }}"></div>
     </span>

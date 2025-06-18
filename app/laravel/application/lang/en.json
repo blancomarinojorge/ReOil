@@ -117,6 +117,8 @@
     "The client field is required.": "The client field is required.",
     "The client must be a valid ID.": "The client must be a valid ID.",
     "The selected client does not exist.": "The selected client does not exist.",
-    "This client has already been added to the route.": "This client has already been added to the route."
-
+    "This client has already been added to the route.": "This client has already been added to the route.",
+    "My company": "My company",
+    "clients": "clients",
+    "no clients yet": "no clients yet"
 }

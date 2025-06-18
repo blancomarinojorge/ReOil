@@ -37,6 +37,7 @@ class RouteController extends Controller
 
         $routes = $routes
             ->with(['driver', 'creator', 'truck'])
+            ->withCount('pickups')
             ->latest()
             ->paginate();
 

@@ -3,17 +3,20 @@
         ['label'=>__('Routes'), 'href'=>route('routes.index')],
         ['label'=> $route->id],
     ]">
+        @can('update', $route)
+            <div class="flex items-center">
+                <x-link-button href="{{ route('routes.edit', $route->id) }}" icon-name="edit">{{ __('Edit route data') }}</x-link-button>
+            </div>
+        @endcan
     </x-global.top-bar>
     <article class="p-4">
         <div class="flex flex-col max-w-300 gap-8 lg:mx-auto my-15 mx-5">
             <div class="flex flex-col gap-3">
                 <div class="flex justify-between">
                     <x-global.top-bar.page-title class="text-xl">{{ __('Route data') }}</x-global.top-bar.page-title>
-                    @can('update', $route)
-                        <div class="flex items-center">
-                            <x-link-button href="{{ route('routes.edit', $route->id) }}" icon-name="edit">{{ __('Edit route data') }}</x-link-button>
-                        </div>
-                    @endcan
+                    <div class="flex items-center">
+                        <x-link-button href="{{ route('routes.pickups.index', $route->id) }}" icon-name="location">{{ __('See pickups') }}</x-link-button>
+                    </div>
                 </div>
                 <x-forms.separator class="my-2"/>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -31,18 +34,6 @@
                 <div class="grid">
                     <x-forms.textarea :label="__('description')" name="description" :value="$route->description" class="h-60" disabled/>
                 </div>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="flex justify-between">
-                    <x-global.top-bar.page-title class="text-xl">{{ __('Pickups') }}</x-global.top-bar.page-title>
-                    @can('update', $route)
-                        <div class="flex items-center">
-                            <x-link-button href="{{ route('routes.edit', $route->id) }}" icon-name="edit">{{ __('Edit route data') }}</x-link-button>
-                        </div>
-                    @endcan
-                </div>
-                <x-forms.separator class="my-2"/>
-
             </div>
         </div>
     </article>

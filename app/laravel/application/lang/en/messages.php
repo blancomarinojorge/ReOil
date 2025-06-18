@@ -68,4 +68,5 @@ return [
     'route_pickup_deletion_success' => 'Route pickup deleted successfully',
     'route_pickup_deletion_error' => 'Unknown error trying to delete the route pickup. Please try again or contact support if the problem persists',
 
+    'x_clients' => '{0} no clients yet|{1} :count client|[2,*] :count clients',
 ];

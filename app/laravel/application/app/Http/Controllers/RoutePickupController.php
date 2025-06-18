@@ -23,8 +23,12 @@ class RoutePickupController extends Controller
     {
         $this->authorize('view-any', $route);
 
-        $route->load(['truck', 'driver']);
-        $pickups = $route->pickups()->with(['client']);
+        $route
+            ->load(['truck', 'driver'])
+            ->loadCount('pickups');
+        $pickups = $route->pickups()
+            ->orderBy('order')
+            ->with(['client']);
 
         return view('routes.pickups.index', compact('route', 'pickups'));
     }
@@ -34,10 +38,15 @@ class RoutePickupController extends Controller
      */
     public function create(Route $route)
     {
-        $this->authorize('create', [RoutePickup::class, $route]);
+        $this->authorize('update', $route);
 
-        $route->load(['truck', 'driver']);
-        $pickups = $route->pickups()->with(['client'])->get();
+        $route
+            ->load(['truck', 'driver'])
+            ->loadCount('pickups');
+        $pickups = $route->pickups()
+            ->orderBy('order')
+            ->with(['client'])
+            ->get();
         //clients
         $clients = Client::where('company_id', Auth::user()->company_id)
             ->whereNotIn('id', $pickups->pluck('client_id'))
@@ -52,7 +61,7 @@ class RoutePickupController extends Controller
      */
     public function store(StoreRoutePickupRequest $request, Route $route)
     {
-        $this->authorize('create', [RoutePickup::class, $route]);
+        $this->authorize('update', $route);
 
         $lastOrder = $route->pickups->max('order') ?? 0;
         $newPickupOrder = $lastOrder + 1;
@@ -86,10 +95,18 @@ class RoutePickupController extends Controller
      */
     public function show(RoutePickup $pickup)
     {
-        $this->authorize('view', $pickup);
+        $this->authorize('view', $pickup->route);
 
-        $pickup->load(['client', 'route.truck', 'route.driver', 'route.pickups','route.pickups.client']);
+        $pickup->load(['client', 'route.truck', 'route.driver',
+            'route.pickups' => function ($query) {
+                $query
+                    ->orderBy('order') //need to do it this way so i can order by order
+                    ->with(['client']);
+            }
+        ]);
         $route = $pickup->route;
+
+        $route->loadCount('pickups');
 
         return view('routes.pickups.show', compact('pickup', 'route'));
     }

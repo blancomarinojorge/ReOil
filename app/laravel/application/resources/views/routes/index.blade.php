@@ -14,6 +14,7 @@
                 <thead>
                 <tr>
                     <x-global.tables.table-head>Driver</x-global.tables.table-head>
+                    <x-global.tables.table-head>Stops</x-global.tables.table-head>
                     <x-global.tables.table-head>Truck</x-global.tables.table-head>
                     <x-global.tables.table-head>State</x-global.tables.table-head>
                     <x-global.tables.table-head>Date</x-global.tables.table-head>
@@ -32,8 +33,13 @@
                                 {{ $route->driver->name }} {{ $route->driver->surname_1 }} {{ $route->driver->surname_2 }}
                             </div>
                         </x-global.tables.table-data>
+                        <x-global.tables.table-data>
+                            <x-global.tables.model-link href="{{ route('routes.pickups.index', $route->id) }}" icon-name="location">
+                                @choice('messages.x_clients', $route->pickups_count, ['count' => $route->pickups_count])
+                            </x-global.tables.model-link>
+                        </x-global.tables.table-data>
                         <x-global.tables.table-data>{{ $route->truck->license_plate }}</x-global.tables.table-data>
-                        <x-global.tables.table-data>{{ $route->state->getLabel() }}</x-global.tables.table-data>
+                        <x-global.tables.table-data><x-status-tag :status="$route->state" /></x-global.tables.table-data>
                         <x-global.tables.table-data>{{ $route->start_date }}</x-global.tables.table-data>
                         <x-global.tables.table-data>{{ $route->created_at }}</x-global.tables.table-data>
                         <x-global.tables.table-data>

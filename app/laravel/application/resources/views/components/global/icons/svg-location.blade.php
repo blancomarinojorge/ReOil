@@ -1,6 +1,5 @@
 @props(['class' => ''])
 
 <svg class="{{ $class }}" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M30 51C38.5 42.6 47 35.0783 47 25.8C47 16.5216 39.3889 9 30 9C20.6112 9 13 16.5216 13 25.8C13 35.0783 21.5 42.6 30 51Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M30 32C33.8661 32 37 28.8661 37 25C37 21.134 33.8661 18 30 18C26.1339 18 23 21.134 23 25C23 28.8661 26.1339 32 30 32Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.6771 35.837L30 51L42.3229 35.837C44.7032 32.9082 46 29.269 46 25.5182V24.75C46 16.0515 38.8365 9 30 9C21.1634 9 14 16.0515 14 24.75V25.5182C14 29.269 15.2968 32.9082 17.6771 35.837ZM30 30C32.9455 30 35.3333 27.6495 35.3333 24.75C35.3333 21.8505 32.9455 19.5 30 19.5C27.0545 19.5 24.6667 21.8505 24.6667 24.75C24.6667 27.6495 27.0545 30 30 30Z" fill="currentColor"/>
 </svg>
