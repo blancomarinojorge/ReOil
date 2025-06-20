@@ -1,6 +1,6 @@
 @props(['route','pickup' => null, 'showCreateNew' => true])
 
-<section {{ $attributes->twMerge(['class' => "flex flex-col p-7  w-full xl:min-w-[30%] xl:max-w-[41%] relative"]) }}>
+<section {{ $attributes->twMerge(['class' => "flex flex-col p-7  w-full xl:min-w-[30%] xl:max-w-[41%] relative self-start"]) }}>
     <div class="flex justify-between">
         <h4 class="text-xl">{{ __('Route data') }}</h4>
         <x-status-tag :status="$route->state" />
@@ -65,7 +65,7 @@
     </div>
     @if($showCreateNew && Auth::user()->can('update', $route))
         <div class="flex px-8 pt-5 pb-8">
-            <x-link-button href="{{ route('routes.pickups.create', $route->id) }}" type="secondary" icon-name="add-user" class="grow hover:bg-primary hover:cursor-pointer hover:text-secondary py-5">
+            <x-link-button href="{{ route('routes.pickups.create', $route->id) }}" type="secondary" icon-name="plus" class="grow hover:bg-primary hover:cursor-pointer hover:text-secondary py-5">
                 {{ __('Add pickup') }}
             </x-link-button>
         </div>

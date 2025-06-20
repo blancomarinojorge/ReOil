@@ -4,7 +4,7 @@
         ['label'=>'ola']
     ]">
         <div class="flex items-center">
-            <x-link-button href="#" icon-name="add-user">{{ __('New Employee') }}</x-link-button>
+            <x-link-button href="#" icon-name="plus">{{ __('New Employee') }}</x-link-button>
         </div>
     </x-global.top-bar>
     <article>

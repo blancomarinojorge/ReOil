@@ -10,6 +10,7 @@ use App\Models\Client;
 use App\Models\Route;
 use App\Models\RoutePickup;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -87,7 +88,7 @@ class RoutePickupController extends Controller
         }
 
         return redirect()
-            ->route('pickups.show', $pickup->id)
+            ->route('pickups.edit', $pickup->id)
             ->with('success', __('messages.route_pickup_creation_success'));
     }
 
@@ -103,13 +104,16 @@ class RoutePickupController extends Controller
                 $query
                     ->orderBy('order') //need to do it this way so i can order by order
                     ->with(['client']);
-            }
+            },
+            'pickupResiduesContainers.container.containerType',
+            'pickupResiduesContainers.residue'
         ]);
         $route = $pickup->route;
+        $pickupContainersWithResidues = $pickup->pickupResiduesContainers->groupBy(fn($pickupResidueContainer) => $pickupResidueContainer->container->id);
 
         $route->loadCount('pickups');
 
-        return view('routes.pickups.show', compact('pickup', 'route'));
+        return view('routes.pickups.show', compact('pickup', 'route', 'pickupContainersWithResidues'));
     }
 
     /**
@@ -117,7 +121,19 @@ class RoutePickupController extends Controller
      */
     public function edit(RoutePickup $pickup)
     {
-        //
+        $this->authorize('update', $pickup);
+
+        $pickup->load(['client', 'route.truck', 'route.driver',
+            'route.pickups' => function ($query) {
+                $query
+                    ->orderBy('order')
+                    ->with(['client']);
+            }
+        ]);
+        $route = $pickup->route;
+        $route->loadCount('pickups');
+
+        return view('routes.pickups.edit', compact('pickup', 'route'));
     }
 
     /**
@@ -125,7 +141,14 @@ class RoutePickupController extends Controller
      */
     public function update(UpdateRoutePickupRequest $request, RoutePickup $pickup)
     {
-        //
+        $this->authorize('update', $pickup);
+
+        return $this->tryAction(
+            fn () => $pickup->update($request->validated()),
+            __('messages.route_pickup_update_success'),
+            __('messages.route_pickup_update_error'),
+            route('pickups.show', $pickup->id)
+        );
     }
 
     /**
@@ -133,6 +156,13 @@ class RoutePickupController extends Controller
      */
     public function destroy(RoutePickup $pickup)
     {
-        //
+        $this->authorize('delete', $pickup);
+
+        return $this->tryAction(
+            fn () => $pickup->delete(),
+            __('messages.route_pickup_deletion_success'),
+            __('messages.route_pickup_deletion_error'),
+            route('routes.pickups.index', $pickup->route_id)
+        );
     }
 }

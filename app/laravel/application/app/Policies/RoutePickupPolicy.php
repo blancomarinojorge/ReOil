@@ -32,4 +32,50 @@ class RoutePickupPolicy
 
         return true;
     }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user, RoutePickup $routePickup): bool
+    {
+        if (!$this->isPickupFromSameCompany($user, $routePickup)) {
+            return false;
+        }
+
+        if ($user->role === Role::Driver) {
+            return false;
+        }
+
+        if ($user->role === Role::OfficeStaff && $routePickup->route->creator_id!==$user->id) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function restore(User $user, RoutePickup $routePickup): bool
+    {
+        if (!$this->isPickupFromSameCompany($user, $routePickup)) {
+            return false;
+        }
+
+        if ($user->role !== Role::Admin) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function forceDelete(User $user, RoutePickup $routePickup): bool
+    {
+        if (!$this->isPickupFromSameCompany($user, $routePickup)) {
+            return false;
+        }
+
+        if ($user->role !== Role::Admin) {
+            return false;
+        }
+
+        return true;
+    }
 }

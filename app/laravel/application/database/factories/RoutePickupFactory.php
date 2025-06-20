@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Enums\PickupState;
+use App\Models\Client;
+use App\Models\Route;
+use App\Models\RoutePickup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +21,12 @@ class RoutePickupFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'state' => $this->faker->randomElement(PickupState::cases()),
+            'delivery_note_notes' => $this->faker->sentence(),
+            'observations' => $this->faker->sentence(),
+            'order' =>  $this->faker->randomNumber(),
+            'client_id' => Client::factory(),
+            'route_id' => Route::factory(),
         ];
     }
 }

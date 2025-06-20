@@ -124,5 +124,19 @@
     "clients": "clients",
     "no clients yet": "no clients yet",
     "Route pickups order updated successfully": "Route pickups order updated successfully",
-    "Error updating route pickups order": "Error updating route pickups order"
+    "Error updating route pickups order": "Error updating route pickups order",
+    "Pickup residues": "Pickup residues",
+    "Delete pickup": "Delete pickup",
+    "Add container pickup": "Add container pickup",
+    "Add residue": "Add residue",
+    "quantity": "quantity",
+    "residue": "residue",
+    "Select a residue...": "Select a residue...",
+    "Container residues successfully updated": "Container residues successfully updated",
+    "Error updating container residues": "Error updating container residues",
+    "Container residues deleted successfully": "Container residues deleted successfully",
+    "Error deleting container residues": "Error deleting container residues",
+    "All residues for the container deleted successfully": "All residues for the container deleted successfully",
+    "Error deleting residues for the container": "Error deleting residues for the container",
+    "Container does not belong to this pickup": "Container does not belong to this pickup"
 }

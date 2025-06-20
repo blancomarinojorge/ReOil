@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PickupResidueContainerController;
 use App\Http\Controllers\Web\Auth\RedirectHomeController;
 use App\Http\Controllers\Web\Auth\RegistrationController;
 use App\Http\Controllers\Web\Auth\SessionController;
@@ -106,12 +107,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/pickups/{pickup}', [RoutePickupController::class, 'destroy'])->name('pickups.destroy');
 
 
-    Route::get('/proba', function (){
-        return view('probaSactum');
-    });
-});
-
-Route::get('/proba', function (){
-    return view('probaSactum');
+    Route::delete('/pickups/{pickup}/containers/{container}', [PickupResidueContainerController::class, 'destroy'])->name('pickups.containers.residues.destroy');
 });
 

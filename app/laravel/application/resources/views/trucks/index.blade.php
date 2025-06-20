@@ -4,7 +4,7 @@
     ]">
         @can('create', \App\Models\Truck::class)
             <div class="flex items-center">
-                <x-link-button href="{{ route('trucks.create') }}" icon-name="add-user">{{ __('New truck') }}</x-link-button>
+                <x-link-button href="{{ route('trucks.create') }}" icon-name="plus">{{ __('New truck') }}</x-link-button>
             </div>
         @endcan
     </x-global.top-bar>

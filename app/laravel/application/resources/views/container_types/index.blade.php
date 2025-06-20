@@ -4,7 +4,7 @@
     ]">
         @can('create', \App\Models\ContainerType::class)
             <div class="flex items-center">
-                <x-link-button href="{{ route('container_types.create') }}" icon-name="add-user">{{ __('New container type') }}</x-link-button>
+                <x-link-button href="{{ route('container_types.create') }}" icon-name="plus">{{ __('New container type') }}</x-link-button>
             </div>
         @endcan
     </x-global.top-bar>

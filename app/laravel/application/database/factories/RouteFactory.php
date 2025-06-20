@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Enums\Auth\Role;
+use App\Enums\RouteState;
+use App\Models\Truck;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +21,12 @@ class RouteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'state' => $this->faker->randomElement(RouteState::cases()),
+            'start_date' => $this->faker->dateTimeThisYear(),
+            'description' => $this->faker->sentence(),
+            'driver_id' => User::factory(['role' => Role::Driver]),
+            'creator_id' => User::factory(['role' => Role::OfficeStaff]),
+            'truck_id' => Truck::factory(),
         ];
     }
 }

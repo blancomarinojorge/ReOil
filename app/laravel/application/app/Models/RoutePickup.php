@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\PickupState;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -64,5 +65,24 @@ class RoutePickup extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function pickupResiduesContainers(): HasMany{
+        return $this->hasMany(PickupResidueContainer::class, 'route_pickup_id');
+    }
+
+    /**
+     * Get containers related to this pickup through the pickup_residue_containers table
+     */
+    public function containers()
+    {
+        return $this->hasManyThrough(
+            Container::class,                // Final model I want
+            PickupResidueContainer::class,  // Intermediate model
+            'route_pickup_id',              // Foreign key on pickup_residue_containers
+            'id',                        // Foreign key on containers table
+            'id',                          // Local key on route_pickups table
+            'container_id'            // Local key on pickup_residue_containers table
+        )->distinct();
     }
 }

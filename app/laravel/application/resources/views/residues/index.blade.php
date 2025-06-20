@@ -4,7 +4,7 @@
     ]">
         @can('create', \App\Models\Residue::class)
             <div class="flex items-center">
-                <x-link-button href="{{ route('residues.create') }}" icon-name="add-user">{{ __('New residue') }}</x-link-button>
+                <x-link-button href="{{ route('residues.create') }}" icon-name="plus">{{ __('New residue') }}</x-link-button>
             </div>
         @endcan
     </x-global.top-bar>

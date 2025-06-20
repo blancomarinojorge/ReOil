@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Container;
+use App\Models\Residue;
+use App\Models\RoutePickup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,12 @@ class PickupResidueContainerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'route_pickup_id' => RoutePickup::factory(),
+            'residue_id' => Residue::factory(),
+            'container_id' => Container::factory(),
+            'quantity' => $this->faker->randomFloat(2, 1, 2000),
+            'notes' =>  $this->faker->sentence(),
+            'should_pickup_container' => $this->faker->boolean(),
         ];
     }
 }
