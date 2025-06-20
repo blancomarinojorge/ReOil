@@ -17,7 +17,7 @@
             </div>
             <div class="flex grow h-full w-full items-center justify-end 2xl:justify-start 2xl:w-auto">
                 <div class="rounded-md max-h-170 max-w-260 overflow-hidden translate-x-20 2xl:translate-x-0 2xl:max-h-90 2xl:max-w-180">
-                    <img src="{{ Vite::asset('resources/img/dashboard.png') }}" alt="" class="object-cover w-full h-full"/>
+                    <img src="{{ Vite::asset('resources/img/dashboard2.png') }}" alt="" class="object-cover w-full h-full"/>
                 </div>
             </div>
             <div class="hidden h-full w-1/2 absolute overflow-hidden right-0 z-[-1] 2xl:block">
@@ -26,7 +26,7 @@
             </div>
         </section>
 
-        <section id="clients" class="flex flex-col text-center my-30 gap-15 items-center overflow-x-hidden 2xl:my-60">
+        <section id="clients" class="flex flex-col text-center my-30 gap-15 items-center overflow-x-hidden 2xl:my-40">
             <h4 class="text-2xl text-muted">Our clients trust us</h4>
             <div class="flex gap-20  max-w-250 overflow-x-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-150px),transparent_100%)]">
                 <div class="flex gap-20 animate-slide-images">
