@@ -160,6 +160,25 @@
         </div>
     </div>
 
+
+    <!--
+     seleccion de contedor en creacion
+    <div id="page-blocker-container-creation" class="fixed inset-0 bg-secondary-soft/90 z-100 flex justify-center items-center px-3">
+        <div class="p-7 bg-secondary-soft rounded-sm flex flex-col gap-7 grow md:max-w-200">
+            <div class="flex flex-col gap-2">
+                <div class="flex justify-end">
+                    <div id="pu-close-x-btn-creation" class="hover:text-error hover:cursor-pointer p-3" role="button" aria-label="close window">
+                        <x-global.icons.svg-close class="w-6 transition-colors duration-150"></x-global.icons.svg-close>
+                    </div>
+                </div>
+            </div>
+            <div id="pu-save-cancel-container" class="flex gap-3 justify-end mt-4 px-7">
+                <x-link-button id="btn-close-popup-creation" class="hover:cursor-pointer" type="secondary">{{ __('Cancel') }}</x-link-button>
+                <x-forms.button id="pu-btn-select-container" class="px-10">{{ __('Pick residues') }}</x-forms.button>
+            </div>
+        </div>
+    </div>
+-->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let currentContainerId = null;

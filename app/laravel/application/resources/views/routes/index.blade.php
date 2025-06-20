@@ -45,7 +45,7 @@
                         <x-global.tables.table-data>
                             <div class="flex justify-end items-center gap-2">
                                 <a href="{{ route('routes.show', $route->id) }}" class="text-tertiary/70 hover:text-tertiary">
-                                    <x-global.icons.svg-user-data class="w-7"/>
+                                    <x-global.icons.svg-lens class="w-7"/>
                                 </a>
                                 @can('delete', $route)
                                     <x-global.tables.delete-button action="{{ route('routes.destroy', $route->id) }}" :value="$route->id"/>

@@ -25,7 +25,7 @@ class ContainerTypePolicy
             return false;
         }
 
-        return ($user->role === Role::Admin || $user->role === Role::OfficeStaff);
+        return ($user->role === Role::Admin || $user->role === Role::OfficeStaff || $user->role === Role::Driver);
     }
 
     /**

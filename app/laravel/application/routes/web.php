@@ -30,6 +30,8 @@ Route::middleware('guest')->group(function () {
 // Authenticated views
 Route::middleware('auth')->group(function () {
 
+    Route::post('logout', [SessionController::class, 'destroy'])->name('logout');
+
     // Redirect users to their role-specific home
     Route::get('/home', RedirectHomeController::class)
         ->name('home');

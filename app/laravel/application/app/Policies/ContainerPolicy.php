@@ -13,7 +13,7 @@ class ContainerPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role === Role::Admin || $user->role === Role::OfficeStaff;
+        return $user->role === Role::Admin || $user->role === Role::OfficeStaff || $user->role === Role::Driver;
     }
 
     /**

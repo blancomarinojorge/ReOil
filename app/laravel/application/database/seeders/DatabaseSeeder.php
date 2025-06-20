@@ -79,8 +79,6 @@ class DatabaseSeeder extends Seeder
                     }
                     $pickup->pickupResiduesContainers()->saveMany($pickupsContainersResidues);
                 }
-
-                dump($route->pickups->first()->pickupResiduesContainers);
             }
 
 
